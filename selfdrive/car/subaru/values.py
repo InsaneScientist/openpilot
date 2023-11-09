@@ -95,14 +95,14 @@ class Footnote(Enum):
     Column.PACKAGE)
   EYESIGHT_DISABLED = CarFootnote(
     "When using openpilot longitudinal, stock eyesight features such as AEB and High Beam Assist will be disabled.",
-    Column.PACKAGE)
+    Column.LONGITUDINAL)
 
 
 @dataclass
 class SubaruCarInfo(CarInfo):
   package: str = "EyeSight Driver Assistance"
   car_parts: CarParts = field(default_factory=CarParts.common([CarHarness.subaru_a]))
-  footnotes: List[Enum] = field(default_factory=lambda: [Footnote.GLOBAL, Footnote.EYESIGHT_DISABLED])
+  footnotes: List[Enum] = field(default_factory=lambda: [Footnote.GLOBAL])
 
   def init_make(self, CP: car.CarParams):
     self.car_parts.parts.extend([Tool.socket_8mm_deep, Tool.pry_tool])
